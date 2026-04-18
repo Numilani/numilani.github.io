@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Personal 26]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Personal 26</title><link></link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sat, 18 Apr 2026 01:32:46 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sat, 18 Apr 2026 01:32:40 GMT</pubDate><ttl>60</ttl><dc:creator></dc:creator><item><title><![CDATA[Hytale Startup Flow]]></title><description><![CDATA[Load Early PluginsLoad Mixins (if present)Init logging and file handlerpre-launch checks
+QUIC availability
+Java Thread settings
+LOG: Starting Hytaleserver(various internal configuration settings are set here)
+serverContext - name, max-players
+universeContext - path, player-count, world list
+pluginsContext - list of plugins, state (enabled/disabled/failed), versions
+packsContext - version and manifest data about assetpacks
+"unknown" - server hardware UUID, auth mod, Hytale username/UUID for selected profile, IP address?
+"scope" - hardware UUID (again?), OS name and version, HytaleServer version/revision/patchline/environment This data is sent to Hytale on server startup, unless Sentry is disabled. Sentry can be disabled by: option flags
+by the presence of early plugins
+by running a "development build" (probably a way for Hytale employees to not flood Sentry) Sentry Telemetry(additional internal init() calls, a couple TrigMathUtil calls, for some reason? also some early setup for a shutdown hook)AssetRegistryLoader.init()Core Plugin RegistrationCore Plugin RegistrationLOG: Booting up HytaleServer - Version &lt;ver&gt;, Revision: &lt;rev&gt;??? this.sendSingleplayerProgress()LOG: Setup phase...commandManager.registerCommands()pluginManager.setup()Register DataStoreProvider codec
+Currently only one option: DiskDataStoreProvider
+LOG: Loading Config...
+(load cfg from file)LOG: Authentication mode: %s
+(ServerAuthManager.getInstance().initialize() is called here to enable auth, but CredentialStore is not initialized until later)Initialize ServerAuthManager's CredentialStoreDispatch LoadAssetEvent[!] LOG: SEVERE - Asset validation FAILED with X reason(s):[!] possible shutdown point?LOG: Asset validation passedLOG: Failed to launch with transforming classloader
+OR
+LateMain.lateMain() threw an exceptionProcess Server-wide and per-world configsLOG: client.disconnection.shutdownReason.shutdown.schemaGenerated???
+this.sendSingleplayerProgress()LOG: Starting plugin manager...pluginManager.start()this.reportSingleplayerStatus()save any changes made to server configUniverse.get().getUniverseReady().join()LOG: Universe Ready!apply SP/MP and "fresh universe" tags (?)wait for "bind complete" (presumably port binding?)Dispatch BootEventExecute Boot Commands (if any were set at command line)LOG: Hytale Server Booted!updateModule.onServerReady()Get AuthMode (if not SP server) and prompt for server token if needed]]></description><link>hytale-startup-flow.html</link><guid isPermaLink="false">Hytale Server Flow/Hytale Startup Flow.canvas</guid><pubDate>Sat, 18 Apr 2026 01:06:57 GMT</pubDate></item></channel></rss>
